@@ -126,7 +126,9 @@ contract TestSwapAndBridgeOptimismRouter is Test, Deployers {
     function _swapETHForOUTb(bool bridge, address recipient) internal {
         poolSwapAndBridgeOptimism.swap{value: 0.001 ether}(
             key,
-            SwapParams({zeroForOne: true, amountSpecified: -0.001 ether, sqrtPriceLimitX96: TickMath.MIN_SQRT_PRICE + 1}),
+            SwapParams({
+                zeroForOne: true, amountSpecified: -0.001 ether, sqrtPriceLimitX96: TickMath.MIN_SQRT_PRICE + 1
+            }),
             SwapAndBridgeOptimismRouter.SwapSettings({bridgeTokens: bridge, recipientAddress: recipient}),
             ZERO_BYTES
         );
@@ -135,7 +137,9 @@ contract TestSwapAndBridgeOptimismRouter is Test, Deployers {
     function _swapOUTbForETH(bool bridge, address recipient) internal {
         poolSwapAndBridgeOptimism.swap(
             key,
-            SwapParams({zeroForOne: false, amountSpecified: -0.001 ether, sqrtPriceLimitX96: TickMath.MAX_SQRT_PRICE - 1}),
+            SwapParams({
+                zeroForOne: false, amountSpecified: -0.001 ether, sqrtPriceLimitX96: TickMath.MAX_SQRT_PRICE - 1
+            }),
             SwapAndBridgeOptimismRouter.SwapSettings({bridgeTokens: bridge, recipientAddress: recipient}),
             ZERO_BYTES
         );
